@@ -1,0 +1,308 @@
+<apex:page standardController="case" showHeader="false" sidebar="false" applyHtmlTag="true" docType="html-5.0" standardStylesheets="true" extensions="WebtoCaseExtController" >
+    <apex:form >
+    <apex:slds />
+    <style>
+        input[type=submit] {
+        padding: 5px 5px;
+        }
+        
+        html {
+        background-image: url("/resource/1562776519000/CromptomBackground?")!important;        
+        background-repeat:no-repeat;            
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        }
+        
+        .logo{ 
+        max-width: 15% !important;
+        height: 10px;
+        border-radius: 30px;
+        }    
+        
+        
+        @media all and (min-width: 1500px) {
+        .form-content{ 
+        padding: 20px 0 160px!important;
+        }    
+        }
+        .pdt-intrst{
+        width: 100%!important;
+        border: 1px solid rgb(221, 219, 218)!important;
+        border-radius: .25rem!important;
+        padding: 0 1%;
+        margin: 1% 0;
+        }
+       
+        #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 5s;
+        animation: fadein 0.5s, fadeout 0.5s 5s;
+        }
+        
+        @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+        }
+        
+        @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+        }
+        
+        @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 0; opacity: 0;}
+        }
+        
+        @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+        }
+        
+        .h1 {
+        width: 200px;
+        height: 30px;
+        border: 1px solid gray; 
+        }
+        
+        
+   .lookupInput {
+    display: grid;
+    /* white-space: nowrap; */
+    vertical-align: middle;
+}
+        
+    </style>
+    <html>
+        
+        
+        <body>
+            
+                <div class="slds-wrap" >
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12" >
+                        <img src="/resource/1562751323000/CromptonLogo?" alt="logo" class="logo" />
+                    </div>
+                    <div class="slds-align_absolute-center slds-large-size_6-of-12">
+                        <article class="slds-card form-content" style="width:70%;">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <span class="slds-icon_container slds-icon-standard-account" >
+                                            <span class="slds-assistive-text">    </span>
+                                        </span>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title" style="text-align: center;">
+                                            Register your Case   
+                                        </h2>
+                                    </div>
+                                    <div class="slds-no-flex">
+                                    </div>
+                                </header>
+                            </div>
+                           
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid">
+                                    <div class="slds-col slds-size_1-of-12"></div>
+                                    <div class="slds-col slds-size_10-of-12">
+                                        <div class="slds-grid slds-grid_vertical">
+                                            
+                                            <div class="slds-col">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control ">
+                                                     <label>First Name</label>   
+                                                    <apex:inputField value="{!caseObj.First_Name__c}" styleClass="slds-input"  style="maxlength:80; size:20;" required="true"/>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Last Name</label>
+                                                    <apex:inputField value="{!caseObj.Last_Name__c}" styleClass="slds-input"  style="maxlength:80; size:20;" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col" >
+                                                <div class="slds-form-element" >
+                                                    <div class="slds-form-element__control">
+                                                        <label>Company Name</label>
+                                                    <apex:inputField value="{!caseObj.Company_Name__c}" styleClass="slds-input" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col ">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Enter Your Valid E-mail ID</label>
+                                                        <apex:inputField value="{!caseObj.suppliedEmail}" styleClass="slds-input"  style="maxlength:80; size:20;" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        <!--    <div class="slds-col">
+                                                <div class="slds-form-element">
+                                                    
+                                                    <div class="slds-form-element__control">
+                                                        <div class="">
+                                                            <div class="slds-col">
+                                                                <div class="slds-form-element ">
+                                                                    <div class="slds-form-element__control">
+                                                                        <apex:inputField value="{!caseObjType}" styleClass="slds-input" type="text" html-placeholder="E-mail" style="maxlength:10; size:20;" required="true"/>
+                                                                      
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="slds-col">
+                                                <div class="slds-form-element">
+                                             
+                                                    <div class="">
+                                                        <div class="slds-col">
+                                                            <div class="slds-form-element ">
+                                                                <div class="slds-form-element__control">
+                                                                 <apex:inputField value="{!caseObjProduct__c}" styleClass="slds-input" type="text" html-placeholder="Product" style="maxlength:80; size:20;" required="true"/>
+                                                                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="slds-form-element__control" style="padding-top: 1%;">
+                                                        <input id="text-input-07" class="slds-input" type="text" placeholder="Explain Your Query" name="description" style="height:90px" size="40" /> 
+                                                    </div> 
+                                                    
+
+                                                </div>
+                                            </div>
+                                            -->
+                                            
+                                            <div class="slds-col">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Product</label>
+                                                        <apex:inputField value="{!caseObj.Product_List__c}" styleClass="slds-input"  style="maxlength:80; size:20;" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="slds-col ">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Case Type</label>
+                                                        <apex:inputField value="{!caseObj.Type}" styleClass="slds-input" style="maxlength:10; size:20;" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+                                            <div class="slds-col ">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Case Reason</label>
+                                                        <apex:inputField value="{!caseObj.Reason}" styleClass="slds-input"  style="maxlength:10; size:20;" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col ">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Case Priority</label>
+                                                        <apex:inputField value="{!caseObj.Priority}" styleClass="slds-input"  style="maxlength:10; size:20;" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col ">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Case-Subject</label>
+                                                        <apex:inputField value="{!caseObj.Subject}" styleClass="slds-input"  style="maxlength:10; size:20;" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col ">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <label>Enter Your Case Description </label>
+                                                 <!--       <input id="text-input-07" class="slds-input" type="text" placeholder="Explain Your Query" name="description" style="height:90px" size="40" /> 
+-->   <apex:inputField value="{!caseObj.Description}" styleClass="slds-textarea"  style="height:90px size:40; resize: none;" required="true" />
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                            
+                                            <div class="slds-col">
+                                                <div class="slds-align_absolute-center" style="height: 3rem; ">
+                                                    <apex:commandButton action="{!save}" value="Submit" styleClass="slds-button slds-button_success" style="background-color: rgb(129, 194, 66);"/>
+                                               <!--     <input type="submit" name="submit" style="background-color: rgb(129, 194, 66);" class="slds-button slds-button_success "  onclick="onsubmit()" /> 
+                                              -->  </div>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        
+                                    </div>   
+                                    
+                                    
+                                </div>
+                                
+                                
+                            </div>
+                       
+                        </article>
+                        
+                        
+                    </div>
+                        
+                </div>
+                
+        </body>
+    </html>
+    
+    
+    <script>
+    function checkPhone()
+    {
+        var phonechk = document.getElementById('text-input-04');  
+        if(phonechk.value.length!=10){
+            alert("Please Enter 10 Digit Phone");
+            phonechk.focus(); 
+            var borderColor = "red";
+            var bxshadow = "0 0 3px red";
+            phonechk.style.border = borderColor;
+            phonechk.style.boxShadow = bxshadow;
+            return false;
+            
+        }
+        else{
+            var borderColor2 = "1px solid rgb(221, 219, 218)";
+            var bxshadow2 = "none";
+            phonechk.style.border = borderColor2;
+            phonechk.style.boxShadow = bxshadow2;
+            return true;
+        }
+    }
+   function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+          return true;
+       
+    }
+    
+   function showToast() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        alert('Details submitted successfully');
+    }       
+    </script>
+        </apex:form>
+</apex:page>
